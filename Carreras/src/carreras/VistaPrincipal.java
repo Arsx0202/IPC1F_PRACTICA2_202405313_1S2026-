@@ -1,5 +1,11 @@
-
 package carreras;
+
+
+
+
+import Controllers.PartidaController;
+import carreras.VistaPre;
+import javax.swing.JPanel;
 
 /**
  *
@@ -28,7 +34,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnResultados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,7 +46,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jButton2.setText("Salir");
 
-        jButton3.setText("VER RESULTADOS");
+        btnResultados.setText("VER RESULTADOS");
+        btnResultados.addActionListener(this::btnResultadosActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,7 +59,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(btnResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
@@ -67,7 +74,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btnResultados)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(107, Short.MAX_VALUE))
@@ -82,6 +89,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
        this.setVisible(false);
        vPre.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
+    try {
+        PartidaController pc = new PartidaController();
+      
+       JPanel grafico = (JPanel) pc.generarGrafica();
+        
+        javax.swing.JFrame ventanaGrafica = new javax.swing.JFrame("Reporte de Punteos");
+        
+        
+        ventanaGrafica.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        ventanaGrafica.getContentPane().add(grafico); 
+        ventanaGrafica.pack(); 
+        ventanaGrafica.setLocationRelativeTo(null); 
+        ventanaGrafica.setVisible(true); 
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Aún no hay partidas registradas para mostrar.");
+    }
+
+    }//GEN-LAST:event_btnResultadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,9 +137,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnResultados;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

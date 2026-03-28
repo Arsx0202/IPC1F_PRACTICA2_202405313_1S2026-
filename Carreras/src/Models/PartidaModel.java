@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Models;
 
 /**
@@ -9,49 +6,47 @@ package Models;
  * @author celad
  */
 public class PartidaModel {
-    private int IdPartida;
-    private int PunteoJugador1;
-    private int PunteoJugador2;
-    private JineteModel Jugador1;
-    private JineteModel Jugador2;
-
-    public int getIdPartida() {
-        return IdPartida;
+    private String jugador;
+    private String oponente;
+    private String ganador;
+    private int puntos;
+    
+    public PartidaModel(String jugador, String oponente, String ganador, int puntos) {
+        this.jugador = jugador;
+        this.oponente = oponente;
+        this.ganador = ganador;
+        this.puntos = puntos;
     }
 
-    public void setIdPartida(int IdPartida) {
-        this.IdPartida = IdPartida;
+    public String getJugador() {
+        return jugador;
     }
 
-    public int getPunteoJugador1() {
-        return PunteoJugador1;
+    public void setJugador(String jugador) {
+        this.jugador = jugador;
     }
 
-    public void setPunteoJugador1(int PunteoJugador1) {
-        this.PunteoJugador1 = PunteoJugador1;
+    public String getOponente() {
+        return oponente;
     }
 
-    public int getPunteoJugador2() {
-        return PunteoJugador2;
+    public void setOponente(String oponente) {
+        this.oponente = oponente;
     }
 
-    public void setPunteoJugador2(int PunteoJugador2) {
-        this.PunteoJugador2 = PunteoJugador2;
+    public String getGanador() {
+        return ganador;
     }
 
-    public JineteModel getJugador1() {
-        return Jugador1;
+    public void setGanador(String ganador) {
+        this.ganador = ganador;
     }
 
-    public void setJugador1(JineteModel Jugador1) {
-        this.Jugador1 = Jugador1;
+    public int getPuntos() {
+        return puntos;
     }
 
-    public JineteModel getJugador2() {
-        return Jugador2;
-    }
-
-    public void setJugador2(JineteModel Jugador2) {
-        this.Jugador2 = Jugador2;
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 }

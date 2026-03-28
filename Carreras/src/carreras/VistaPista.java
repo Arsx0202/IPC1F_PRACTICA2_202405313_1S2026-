@@ -16,6 +16,7 @@ public class VistaPista extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaPista.class.getName());
     private JineteModel jugador;
     private JineteModel cpu;
+    public static boolean hayGanador = false;
 
     /**
      * Creates new form VistaPista
@@ -53,6 +54,7 @@ public class VistaPista extends javax.swing.JFrame {
         btnIniciar.addActionListener(this::btnIniciarActionPerformed);
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         lblMago1.setForeground(new java.awt.Color(102, 51, 0));
         lblMago1.setText("■");
@@ -105,15 +107,26 @@ public class VistaPista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        HilosCarrera hilo1 = new HilosCarrera(lblMago1, jugador, 650);
-        HilosCarrera hilo2 = new HilosCarrera(lblMago2, cpu, 650);
+        this.hayGanador = false;
+        
+        btnIniciar.setEnabled(false);
+        
+        int metaX = 650;
+        HilosCarrera hilo1 = new HilosCarrera(lblMago1, jugador, metaX, jugador.getNombre(), cpu.getNombre(), this);
+        HilosCarrera hilo2 = new HilosCarrera(lblMago2, cpu, metaX, jugador.getNombre(), cpu.getNombre(), this);
 
-        // 2. Arrancar los hilos al mismo tiempo
+        
         hilo1.start();
         hilo2.start();
     
 
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        VistaPre vPre = new VistaPre();
+        vPre.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
