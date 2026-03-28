@@ -4,6 +4,9 @@
  */
 package carreras;
 
+import Hilos.HilosCarrera;
+import Models.JineteModel;
+
 /**
  *
  * @author celad
@@ -11,13 +14,22 @@ package carreras;
 public class VistaPista extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaPista.class.getName());
+    private JineteModel jugador;
+    private JineteModel cpu;
 
     /**
      * Creates new form VistaPista
      */
-    public VistaPista() {
+    public VistaPista(JineteModel pJugador, JineteModel pCpu) {
         initComponents();
+        this.jugador = pJugador;
+        this.cpu = pCpu;
+        
+        lblJugador.setText(jugador.getNombre());
+        lblCpu.setText(cpu.getNombre());
     }
+       
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,33 +40,63 @@ public class VistaPista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnIniciar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lblMago1 = new javax.swing.JLabel();
+        lblMago2 = new javax.swing.JLabel();
+        lblJugador = new javax.swing.JLabel();
+        lblCpu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Iniciar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(this::btnIniciarActionPerformed);
 
         jButton2.setText("Salir");
+
+        lblMago1.setForeground(new java.awt.Color(102, 51, 0));
+        lblMago1.setText("■");
+
+        lblMago2.setForeground(new java.awt.Color(204, 0, 102));
+        lblMago2.setText("■");
+
+        lblJugador.setText("jLabel1");
+
+        lblCpu.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(471, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(505, Short.MAX_VALUE)
+                .addComponent(btnIniciar)
                 .addGap(37, 37, 37)
                 .addComponent(jButton2)
                 .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMago2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblJugador)
+                    .addComponent(lblCpu)
+                    .addComponent(lblMago1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(271, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(lblJugador)
+                .addGap(27, 27, 27)
+                .addComponent(lblMago1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(lblCpu)
+                .addGap(18, 18, 18)
+                .addComponent(lblMago2)
+                .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnIniciar)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
@@ -62,37 +104,28 @@ public class VistaPista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        HilosCarrera hilo1 = new HilosCarrera(lblMago1, jugador, 650);
+        HilosCarrera hilo2 = new HilosCarrera(lblMago2, cpu, 650);
+
+        // 2. Arrancar los hilos al mismo tiempo
+        hilo1.start();
+        hilo2.start();
+    
+
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VistaPista().setVisible(true));
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIniciar;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel lblCpu;
+    private javax.swing.JLabel lblJugador;
+    private javax.swing.JLabel lblMago1;
+    private javax.swing.JLabel lblMago2;
     // End of variables declaration//GEN-END:variables
 }

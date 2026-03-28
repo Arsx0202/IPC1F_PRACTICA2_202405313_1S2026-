@@ -154,9 +154,9 @@ public class VistaCreacion extends javax.swing.JFrame {
 
    
     if (respuesta.contains("Error")) {
-        JOptionPane.showMessageDialog(this, respuesta, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, respuesta, "Cuidado", JOptionPane.ERROR_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(this, respuesta, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, respuesta, "Felicidades!", JOptionPane.INFORMATION_MESSAGE);
         
         
         txtId.setText("");
@@ -171,7 +171,7 @@ public class VistaCreacion extends javax.swing.JFrame {
     }
 
 } catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(this, "El ID debe ser un número entero.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this, "El ID debe ser un numero mayor a 2 y entero", "Error de formato", JOptionPane.ERROR_MESSAGE);
 }
       ;
     }//GEN-LAST:event_btnCrearActionPerformed
